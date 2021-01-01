@@ -1,6 +1,7 @@
 # Hepsiburada Link Vote Challenge
 
 This application is a website where you can rate links.
+[demo](https://hepsiburada-link-vote-challenge.vercel.app/)
 
 ## Requirements
 
@@ -15,19 +16,15 @@ This application is a website where you can rate links.
 ## Tasks
 
 - [x] create project
-- [ ] create API service
-  - [ ] implement `createLink` endpoint
-  - [ ] implement `getLinks` endpoint
-- [ ] create ui components
-  - [ ] Text
-  - [ ] Icon
-  - [ ] Button
-  - [ ] Input
-  - [ ] PointCard
-  - [ ] LinkCard
-  - [ ] Select
-  - [ ] Paginate
-  - [ ] Toast
-  - [ ] Dialog
-  - [ ] Header
-- [ ] create pages
+- [x] create API service
+  - [x] implement `createLink` endpoint
+  - [x] implement `getLinks` endpoint
+- [x] create ui components
+  - [x] Icon
+  - [x] LinkCard
+  - [x] Paginate
+  - [x] Toast
+  - [x] Header
+- [x] create pages
+- [x] List
+- [x] Create
