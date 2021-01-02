@@ -3,11 +3,13 @@ import { LinkModel, SerializedLink } from './models';
 const LOCAL_STORAGE_KEY = 'HEPSIBURADA_LINK_VOTE';
 
 class Database {
-  createLink = (link: Omit<LinkModel, 'createdAt'>) => {
+  createLink = (link: Omit<LinkModel, 'createdAt' | 'id' | 'score'>) => {
     const links = this._getAllLinks();
     const createdLink: LinkModel = {
       ...link,
-      createdAt: new Date().toString(),
+      id: link.url,
+      createdAt: new Date().toISOString(),
+      score: 0,
     };
 
     links.push(createdLink);
@@ -16,6 +18,27 @@ class Database {
 
     return this.serialize(createdLink);
   };
+
+  updateLink = (
+    id: string,
+    params: Partial<Omit<LinkModel, 'id' | 'createdAt'>>
+  ) => {
+    this.setLocalStorage(
+      this._getAllLinks().map((link) => {
+        if (link.id !== id) {
+          return link;
+        }
+
+        return {
+          ...link,
+          ...params,
+        };
+      })
+    );
+  };
+
+  deleteLink = (id: string) =>
+    this.setLocalStorage(this._getAllLinks().filter((link) => link.id !== id));
 
   getAllLinks = () => this._getAllLinks().map(this.serialize);
 
@@ -37,7 +60,7 @@ class Database {
     return {
       ...link,
       createdAt: new Date(link.createdAt),
-      score: link.upVoteCount - link.downVoteCount,
+      // createdAt: new Date(),
     };
   };
 }
