@@ -1,8 +1,7 @@
 # Hepsiburada Link Vote Challenge
 
 This application is a website where you can rate links.
-[demo](https://hepsiburada-link-vote-challenge.vercel.app/)
-
+### ✨ [Demo](https://hepsiburada-link-vote-challenge.vercel.app/)
 ## Requirements
 
 - Node (the more recent the better, won't run on versions under v8. v12 is confirmed to work.)
