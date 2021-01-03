@@ -26,7 +26,7 @@ function App() {
   };
 
   return (
-    <Container fluid="md" className="mt-3 position-relative">
+    <Container className="mt-3 position-relative px-4 px-md-0">
       <Row className="border-bottom">
         <Col>
           <Row>
