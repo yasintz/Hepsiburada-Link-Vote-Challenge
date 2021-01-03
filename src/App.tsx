@@ -1,8 +1,10 @@
 import React from 'react';
-import { Row, Col, Container, Toast } from 'react-bootstrap';
+import {
+  Row, Col, Container, Toast,
+} from 'react-bootstrap';
+import { Switch, Route } from 'react-router-dom';
 import { logo } from './constants';
 import ListPage from './pages/List';
-import { Switch, Route } from 'react-router-dom';
 import CreatePage from './pages/Create';
 
 export type ToastType = 'success' | 'error';
@@ -19,7 +21,7 @@ function App() {
   });
 
   const showToast: ShowToastFunction = (type, message) => {
-    setToast({ type: type, message });
+    setToast({ type, message });
     setTimeout(() => setToast({ type: false, message: '' }), 1500);
   };
 
@@ -33,15 +35,12 @@ function App() {
               sm={12}
               md={6}
             >
-              {
-                // eslint-disable-next-line
-                <a
-                  className="h-logo"
-                  href="https://www.hepsiburada.com/"
-                  style={{ backgroundImage: `url("${logo}")` }}
-                  title="Hepsiburada"
-                />
-              }
+              <a
+                className="h-logo"
+                href="https://www.hepsiburada.com/"
+                style={{ backgroundImage: `url("${logo}")` }}
+                title="Hepsiburada"
+              />
             </Col>
             <Col
               className="d-flex justify-content-md-end l-logo justify-content-center"
@@ -49,7 +48,8 @@ function App() {
               md={6}
             >
               <span>Link</span>
-              <span>VOTE</span>&nbsp; Challenge
+              <span>VOTE</span>
+              &nbsp; Challenge
             </Col>
           </Row>
         </Col>

@@ -1,12 +1,12 @@
 export function validURL(str: string) {
-  var pattern = new RegExp(
-    '^(https?:\\/\\/)?' + // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-      '(\\#[-a-z\\d_]*)?$',
-    'i'
+  const pattern = new RegExp(
+    '^(https?:\\/\\/)?' // protocol
+      + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' // domain name
+      + '((\\d{1,3}\\.){3}\\d{1,3}))' // OR ip (v4) address
+      + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' // port and path
+      + '(\\?[;&a-z\\d%_.~+=-]*)?' // query string
+      + '(\\#[-a-z\\d_]*)?$',
+    'i',
   ); // fragment locator
   return !!pattern.test(str);
 }
@@ -15,11 +15,11 @@ export function pagination(
   current: number,
   first: number,
   last: number,
-  pageCount: number
+  pageCount: number,
 ): {
-  type: 'page' | 'dot';
-  pageNumber: number;
-}[] {
+    type: 'page' | 'dot';
+    pageNumber: number;
+  }[] {
   const count = pageCount % 2 === 0 ? pageCount - 1 : pageCount;
 
   if (count >= last) {
@@ -38,17 +38,13 @@ export function pagination(
     first,
     current - delta <= 0 ? first + 1 : -1,
     //
-    ...Array.from({ length: count - 4 }, (_, i) => {
-      return Math.ceil(delta / 2 - i);
-    })
+    ...Array.from({ length: count - 4 }, (_, i) => Math.ceil(delta / 2 - i))
       .map((i) => current - i)
-      .map((i) =>
-        isFirst
-          ? i + (delta - (current - first))
-          : isLast
+      .map((i) => (isFirst
+        ? i + (delta - (current - first))
+        : isLast
           ? i - (delta - (last - current))
-          : i
-      ),
+          : i)),
     current + delta >= last ? last - 1 : 0,
     last,
   ].map((p, i, s) => ({

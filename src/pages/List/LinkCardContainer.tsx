@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useMutation } from 'react-query';
+import { Button, Modal } from 'react-bootstrap';
 import { deleteLink, vote } from '../../services/api';
 import { SerializedLink } from '../../services/models';
 import LinkCard from '../../components/LinkCard';
-import { Button, Modal } from 'react-bootstrap';
 import Icon from '../../components/Icon';
 import { ShowToastFunction } from '../../App';
 
@@ -27,7 +27,7 @@ const LinkCardContainer: React.FC<LinkCardContainerProps> = ({
       onSuccess: () => {
         refetchList();
       },
-    }
+    },
   );
 
   const { mutate: downVote, isLoading: isDownVoteLoading } = useMutation(
@@ -36,7 +36,7 @@ const LinkCardContainer: React.FC<LinkCardContainerProps> = ({
       onSuccess: () => {
         refetchList();
       },
-    }
+    },
   );
 
   const { mutate: deleteLinkFn, isLoading: isDeleteLoading } = useMutation(
@@ -51,15 +51,14 @@ const LinkCardContainer: React.FC<LinkCardContainerProps> = ({
         handleClose();
 
         setTimeout(
-          () =>
-            showToast(
-              'error',
-              `An error occurred while deleting ${link.name}.`
-            ),
-          500
+          () => showToast(
+            'error',
+            `An error occurred while deleting ${link.name}.`,
+          ),
+          500,
         );
       },
-    }
+    },
   );
 
   return (
@@ -78,7 +77,9 @@ const LinkCardContainer: React.FC<LinkCardContainerProps> = ({
           <Modal.Title>Delete Link</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Do you want to remove: <b>{link.name}</b>
+          Do you want to remove:
+          {' '}
+          <b>{link.name}</b>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

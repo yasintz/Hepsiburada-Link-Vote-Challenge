@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Col, Row, Form, Button, Spinner, Toast } from 'react-bootstrap';
+import {
+  Col, Row, Form, Button, Spinner,
+} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { ShowToastFunction } from '../App';
 import { createLink } from '../services/api';
-import { validURL } from '../utils';
 
 type CreatePageProps = {
   showToast: ShowToastFunction;
@@ -44,9 +45,9 @@ const CreatePage: React.FC<CreatePageProps> = ({ showToast }) => {
         await createLink({ name, url });
         formRef.current?.reset();
 
-        showToast('success', 'Success');
-      } catch (error) {
-        showToast('error', error.message);
+        showToast('success', `${name} added`);
+      } catch (err) {
+        showToast('error', err.message);
       }
 
       setIsLoading(false);

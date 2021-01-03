@@ -21,7 +21,7 @@ class Database {
 
   updateLink = (
     id: string,
-    params: Partial<Omit<LinkModel, 'id' | 'createdAt'>>
+    params: Partial<Omit<LinkModel, 'id' | 'createdAt'>>,
   ) => {
     this.setLocalStorage(
       this._getAllLinks().map((link) => {
@@ -33,12 +33,13 @@ class Database {
           ...link,
           ...params,
         };
-      })
+      }),
     );
   };
 
-  deleteLink = (id: string) =>
+  deleteLink = (id: string) => {
     this.setLocalStorage(this._getAllLinks().filter((link) => link.id !== id));
+  };
 
   getAllLinks = () => this._getAllLinks().map(this.serialize);
 
@@ -56,13 +57,12 @@ class Database {
   private setLocalStorage = (data: LinkModel[]) => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
   };
-  private serialize = (link: LinkModel): SerializedLink => {
-    return {
-      ...link,
-      createdAt: new Date(link.createdAt),
-      // createdAt: new Date(),
-    };
-  };
+
+  private serialize = (link: LinkModel): SerializedLink => ({
+    ...link,
+    createdAt: new Date(link.createdAt),
+    // createdAt: new Date(),
+  });
 }
 
 const database = new Database();

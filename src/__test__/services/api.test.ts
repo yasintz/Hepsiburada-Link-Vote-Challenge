@@ -12,11 +12,9 @@ describe('API', () => {
     });
   });
 
-  test('should fail when sending invalid url.', () => {
-    return createLink({ name: 'name', url: 'url' }).catch((e) => {
-      expect(e).not.toBe(undefined);
-    });
-  });
+  test('should fail when sending invalid url.', () => createLink({ name: 'name', url: 'url' }).catch((e) => {
+    expect(e).not.toBe(undefined);
+  }));
 
   describe('Sort Algorithm', () => {
     const links: SerializedLink[] = [
@@ -61,10 +59,10 @@ describe('API', () => {
 
     test('The sorting algorithm should work correctly.', () => {
       const sortedByScoreDesc = Array.from(links).sort(
-        sortAlgorithm('score', 'desc')
+        sortAlgorithm('score', 'desc'),
       );
       const sortedByDateDesc = Array.from(links).sort(
-        sortAlgorithm('date', 'desc')
+        sortAlgorithm('date', 'desc'),
       );
 
       expect(sortedByScoreDesc[0].name).toBe('5');
@@ -73,7 +71,7 @@ describe('API', () => {
 
     test('The newest link with the same score should be higher in the list.', () => {
       const sortedByScoreDesc = Array.from(links).sort(
-        sortAlgorithm('score', 'desc')
+        sortAlgorithm('score', 'desc'),
       );
 
       expect(sortedByScoreDesc[1].name).toBe('2');
@@ -81,13 +79,12 @@ describe('API', () => {
     });
     test('The link with the highest score among the same created links should be higher in the list.', () => {
       const sortedByDateDesc = Array.from(links).sort(
-        sortAlgorithm('date', 'desc')
+        sortAlgorithm('date', 'desc'),
       );
 
       expect(sortedByDateDesc[1].name).toBe('5');
       expect(sortedByDateDesc[2].name).toBe('4');
       expect(sortedByDateDesc[3].name).toBe('1');
- 
     });
   });
 });

@@ -32,7 +32,7 @@ describe('<Pagination/>', () => {
     expect(activeLi.length).toBe(1);
 
     expect(activeLi.find('span.page-link').childAt(0).text()).toBe(
-      initialPage.toString()
+      initialPage.toString(),
     );
   });
 
@@ -46,7 +46,7 @@ describe('<Pagination/>', () => {
 
     const activeLi = component.find('li.active');
     expect(activeLi.find('span.page-link').childAt(0).text()).toBe(
-      initialPage.toString()
+      initialPage.toString(),
     );
 
     component.setProps({ page: 3 });

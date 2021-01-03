@@ -22,8 +22,7 @@ export async function createLink({
   }
   const prevLinks = database.getAllLinks();
 
-  const hasLinkInDatabase =
-    prevLinks.findIndex((prev) => prev.url === url) > -1;
+  const hasLinkInDatabase = prevLinks.findIndex((prev) => prev.url === url) > -1;
   if (hasLinkInDatabase) {
     throw new Error('This link is available, please enter a different url.');
   }

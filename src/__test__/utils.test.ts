@@ -23,7 +23,7 @@ describe('Utils Functions', () => {
 
   test('pagination() should work correctly by `pageCount` param', () => {
     const arrays = [7, 11, 19].map(
-      (pageCount) => [pageCount, pagination(50, 1, 150, pageCount)] as const
+      (pageCount) => [pageCount, pagination(50, 1, 150, pageCount)] as const,
     );
 
     arrays.forEach(([pageCount, array]) => {

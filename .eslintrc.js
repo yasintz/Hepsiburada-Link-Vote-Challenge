@@ -1,0 +1,43 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    jest: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'airbnb',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: ['react', '@typescript-eslint', 'jest'],
+  rules: {
+    'react/prop-types': 'off',
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
+    'react/jsx-filename-extension': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'no-nested-ternary': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'no-use-before-define': 'off',
+    'jsx-a11y/control-has-associated-label': 'off',
+    'jsx-a11y/anchor-has-content': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'import/prefer-default-export': 'off',
+    'no-underscore-dangle': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    'no-unused-vars': 'off',
+  },
+};

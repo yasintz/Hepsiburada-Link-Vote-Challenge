@@ -24,10 +24,10 @@ const iconMap: Record<IconProps['name'], React.FC<BaseIconProps>> = {
 };
 
 const Icon: React.FC<IconProps> = ({ name, className, ...props }) => {
-  const Icon = iconMap[name] || MousePointer;
+  const IconComponent = iconMap[name] || MousePointer;
   const iconClassName = `${className} ${name === 'loader' ? 'spin' : ''}`;
 
-  return <Icon className={iconClassName} {...props} />;
+  return <IconComponent className={iconClassName} {...props} />;
 };
 
 export default Icon;

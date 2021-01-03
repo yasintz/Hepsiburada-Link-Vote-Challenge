@@ -15,22 +15,20 @@ const LinkButton: React.FC<LinkButtonProps> = ({
   text,
   loading,
   icon,
-}) => {
-  return (
-    <p
-      className="text-primary cursor-pointer user-select-none mb-0"
-      onClick={onClick}
-    >
-      <Icon
-        name={loading ? 'loader' : icon === 'down' ? 'arrowDown' : 'arrowUp'}
-        size={16}
-        className="text-primary"
-      />
+}) => (
+  <p
+    className="text-primary cursor-pointer user-select-none mb-0"
+    onClick={onClick}
+  >
+    <Icon
+      name={loading ? 'loader' : icon === 'down' ? 'arrowDown' : 'arrowUp'}
+      size={16}
+      className="text-primary"
+    />
 
-      <span className="ml-1">{text}</span>
-    </p>
-  );
-};
+    <span className="ml-1">{text}</span>
+  </p>
+);
 
 type LinkCardProps = {
   handleUpVoteClick?: () => void;
@@ -51,52 +49,50 @@ const LinkCard: React.FC<LinkCardProps> = ({
   isDownVoteLoading,
   isUpVoteLoading,
   isDeleteLoading,
-}) => {
-  return (
-    <Card className="mt-2 mb-2 mw-100 w-100 position-relative link-card">
-      <Card.Body>
-        <Row>
-          <Col sm={3} xs={12} className="mb-4 mb-sm-0">
-            <div className="border mr-3 rounded d-flex justify-content-center align-items-center score-card">
-              <span>{score}</span>
-              <span>Points</span>
-            </div>
-          </Col>
-          <Col sm={9} xs={12}>
-            <Card.Title className="mb-1 text-ellipsis">{name}</Card.Title>
-            <small className="mb-2 text-muted text-ellipsis d-block">
-              {url}
-            </small>
-            <Row className="mt-2">
-              <Col sm={6} xs={12}>
-                <LinkButton
-                  text="Up Vote"
-                  loading={!!isUpVoteLoading}
-                  onClick={handleUpVoteClick}
-                  icon="up"
-                />
-              </Col>
+}) => (
+  <Card className="mt-2 mb-2 mw-100 w-100 position-relative link-card">
+    <Card.Body>
+      <Row>
+        <Col sm={3} xs={12} className="mb-4 mb-sm-0">
+          <div className="border mr-3 rounded d-flex justify-content-center align-items-center score-card">
+            <span>{score}</span>
+            <span>Points</span>
+          </div>
+        </Col>
+        <Col sm={9} xs={12}>
+          <Card.Title className="mb-1 text-ellipsis">{name}</Card.Title>
+          <small className="mb-2 text-muted text-ellipsis d-block">
+            {url}
+          </small>
+          <Row className="mt-2">
+            <Col sm={6} xs={12}>
+              <LinkButton
+                text="Up Vote"
+                loading={!!isUpVoteLoading}
+                onClick={handleUpVoteClick}
+                icon="up"
+              />
+            </Col>
 
-              <Col sm={6} xs={12}>
-                <LinkButton
-                  text="Down Vote"
-                  loading={!!isDownVoteLoading}
-                  onClick={handleDownVoteClick}
-                  icon="down"
-                />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Card.Body>
-      <Icon
-        name={isDeleteLoading ? 'loader' : 'trash'}
-        onClick={handleDeleteClick}
-        size={16}
-        className="link-trash"
-      />
-    </Card>
-  );
-};
+            <Col sm={6} xs={12}>
+              <LinkButton
+                text="Down Vote"
+                loading={!!isDownVoteLoading}
+                onClick={handleDownVoteClick}
+                icon="down"
+              />
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </Card.Body>
+    <Icon
+      name={isDeleteLoading ? 'loader' : 'trash'}
+      onClick={handleDeleteClick}
+      size={16}
+      className="link-trash"
+    />
+  </Card>
+);
 
 export default LinkCard;
